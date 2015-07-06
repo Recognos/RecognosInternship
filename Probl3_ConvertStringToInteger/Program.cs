@@ -12,12 +12,11 @@ namespace Probl3_ConvertStringToInteger
         static void Main(string[] args)
         {
             var clientString = readString();
-            var lengthOfString = clientString.Length;
-            var isNegativeNumber = clientString.StartsWith("-");
-            var isFloatNumber = clientString.Contains('.');
 
             //Validate the input string
-            validationFunction(clientString);
+            clientString=validationFunction(clientString);
+            var isNegativeNumber = clientString.StartsWith("-");
+            var isFloatNumber = clientString.Contains('.');
 
             /*
              * Print some messages to the user,
@@ -34,11 +33,38 @@ namespace Probl3_ConvertStringToInteger
             {
                 var result = convertToFloat(clientString, isNegativeNumber);
                 Console.WriteLine("The result is: {0}", result);
-            }
-        
+            }   
             //Console.WriteLine(clientString);
             Console.ReadLine();
         }
+
+        /// <summary>
+        /// Validates the users input string
+        /// If not valid, another string will be read
+        /// </summary>
+        /// <param name="stringToValidate">The initial users input</param>
+        /// <returns>A valid string</returns>
+        private static string validationFunction(string stringToValidate)
+        {
+            //The string cannot have any other characters than numbers from [0,9] and '.' or '-'
+            Regex rgx = new Regex("^[0-9.-]+$");
+
+            //The string cannot have more than one '.'
+            var countDots = stringToValidate.Where(x => x.Equals('.')).Count();
+
+            //The string cannot have more than one '-'
+            var countminuses = stringToValidate.Where(x => x.Equals('-')).Count();
+
+            while (!rgx.IsMatch(stringToValidate) || countDots > 1 || countminuses > 1 || (countminuses==1 && !stringToValidate[0].Equals('-')))
+            {
+                Console.WriteLine("The given input cannot be represented as Integer or float!");
+                stringToValidate = readString();
+                countDots = stringToValidate.Where(x => x.Equals('.')).Count();
+                countminuses = stringToValidate.Where(x => x.Equals('-')).Count();
+            }
+            return stringToValidate;
+        }
+
 
         /// <summary>
         /// Function used to convert a string into a float (negative or positive)
@@ -51,7 +77,7 @@ namespace Probl3_ConvertStringToInteger
             int dotPosition=0;
             float toReturn = 0.0f;
             if (isNegative)
-                stringToConvert.Substring(1, stringToConvert.Length - 1);
+               stringToConvert= stringToConvert.Substring(1, stringToConvert.Length - 1);
             for(int i=0;i<stringToConvert.Length;i++)
             {
                 if (stringToConvert[i].Equals('.'))
@@ -70,7 +96,6 @@ namespace Probl3_ConvertStringToInteger
             else
                 return toReturn;
         }
-
 
         /// <summary>
         /// Function used to convert a string into an Integer (negative or positive)
@@ -108,6 +133,11 @@ namespace Probl3_ConvertStringToInteger
             return str;
         }
 
+        /// <summary>
+        /// Writes a message to the client, specifying if the given input can be a float or an integer 
+        /// </summary>
+        /// <param name="isNeg">Boolean</param>
+        /// <param name="isFloat">Boolean</param>
         private static void helperMethod(bool isNeg,bool isFloat){
             if (isNeg && isFloat)
                 Console.WriteLine("The string will be a negative float");
@@ -119,15 +149,6 @@ namespace Probl3_ConvertStringToInteger
                 Console.WriteLine("The string will be an integer");
         }
 
-        private static void validationFunction(string stringToValidate)
-        {
-            //Check if the given string contains invalid characters
-            Regex rgx = new Regex("^[0-9.]+$");
-            while (!rgx.IsMatch(stringToValidate))
-            {
-                Console.WriteLine("The given input cannot be represented as Integer or float!");
-                stringToValidate = readString();
-            }
-        }
+
     }
 }
