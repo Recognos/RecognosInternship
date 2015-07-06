@@ -39,6 +39,25 @@ namespace Problem9_SecretSanta
 
                 t1.AppendText(line + "\r\n");
             }
+
+            var result=from person in personArray
+                       select new {Santa=findSecretSanta(personArray,person),person};
+
+
+
         }
+
+        private Person findSecretSanta(List<Person> persons,Person person){
+            var res = from a in persons
+                      where a.FirstName != person.FirstName
+                      select a;
+            List<Person> pers=res.ToList<Person>();
+            Random rnd = new Random();
+            int no = rnd.Next(0, pers.Count);
+
+            return pers[no];
+        }
+
+
     }
 }
