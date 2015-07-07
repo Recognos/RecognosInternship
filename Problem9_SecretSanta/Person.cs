@@ -10,5 +10,10 @@ namespace Problem9_SecretSanta
     {
         public string FirstName { get; set; }
         public string SecondName { get; set; }
+
+        public override string ToString()
+        {
+            return this.FirstName + " " + this.SecondName;
+        }
     }
 }

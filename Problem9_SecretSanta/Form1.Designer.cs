@@ -64,9 +64,9 @@
             this.label2.AutoSize = true;
             this.label2.Location = new System.Drawing.Point(318, 9);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(179, 13);
+            this.label2.Size = new System.Drawing.Size(139, 13);
             this.label2.TabIndex = 3;
-            this.label2.Text = "The persons with their Secret Santa:";
+            this.label2.Text = "Secret Santa -> Lucky Child";
             // 
             // Form1
             // 
