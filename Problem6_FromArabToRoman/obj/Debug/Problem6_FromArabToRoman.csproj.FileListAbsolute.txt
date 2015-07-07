@@ -1,0 +1,13 @@
+c:\users\ovidiu.pasca\documents\visual studio 2013\Projects\Problem6_FromArabToRoman\Problem6_FromArabToRoman\bin\Debug\Problem6_FromArabToRoman.exe.config
+c:\users\ovidiu.pasca\documents\visual studio 2013\Projects\Problem6_FromArabToRoman\Problem6_FromArabToRoman\bin\Debug\Problem6_FromArabToRoman.exe
+c:\users\ovidiu.pasca\documents\visual studio 2013\Projects\Problem6_FromArabToRoman\Problem6_FromArabToRoman\bin\Debug\Problem6_FromArabToRoman.pdb
+c:\users\ovidiu.pasca\documents\visual studio 2013\Projects\Problem6_FromArabToRoman\Problem6_FromArabToRoman\obj\Debug\Problem6_FromArabToRoman.csprojResolveAssemblyReference.cache
+c:\users\ovidiu.pasca\documents\visual studio 2013\Projects\Problem6_FromArabToRoman\Problem6_FromArabToRoman\obj\Debug\MainWindow.baml
+c:\users\ovidiu.pasca\documents\visual studio 2013\Projects\Problem6_FromArabToRoman\Problem6_FromArabToRoman\obj\Debug\MainWindow.g.cs
+c:\users\ovidiu.pasca\documents\visual studio 2013\Projects\Problem6_FromArabToRoman\Problem6_FromArabToRoman\obj\Debug\App.g.cs
+c:\users\ovidiu.pasca\documents\visual studio 2013\Projects\Problem6_FromArabToRoman\Problem6_FromArabToRoman\obj\Debug\Problem6_FromArabToRoman_MarkupCompile.cache
+c:\users\ovidiu.pasca\documents\visual studio 2013\Projects\Problem6_FromArabToRoman\Problem6_FromArabToRoman\obj\Debug\Problem6_FromArabToRoman.g.resources
+c:\users\ovidiu.pasca\documents\visual studio 2013\Projects\Problem6_FromArabToRoman\Problem6_FromArabToRoman\obj\Debug\Problem6_FromArabToRoman.Properties.Resources.resources
+c:\users\ovidiu.pasca\documents\visual studio 2013\Projects\Problem6_FromArabToRoman\Problem6_FromArabToRoman\obj\Debug\Problem6_FromArabToRoman.csproj.GenerateResource.Cache
+c:\users\ovidiu.pasca\documents\visual studio 2013\Projects\Problem6_FromArabToRoman\Problem6_FromArabToRoman\obj\Debug\Problem6_FromArabToRoman.exe
+c:\users\ovidiu.pasca\documents\visual studio 2013\Projects\Problem6_FromArabToRoman\Problem6_FromArabToRoman\obj\Debug\Problem6_FromArabToRoman.pdb
