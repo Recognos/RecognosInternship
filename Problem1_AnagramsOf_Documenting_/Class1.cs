@@ -10,96 +10,122 @@ namespace Problem1_AnagramsOf_Documenting_
     public static class Class1
     {
 
-        public static char[] ReplaceCharacter(char[] listOfCharacters, char character)
+        public static Dictionary<char, int> getFrequenceVector(string myString)
         {
-            char[] toReturn;
-            var regex = new Regex(Regex.Escape(character.ToString()));
-            toReturn = regex.Replace(listOfCharacters.ToString(), "", 1).ToCharArray();
-            return toReturn;
+            if (myString == null) throw new ArgumentNullException("The string is empty!");
+            var myDict = new Dictionary<char, int>();
+            foreach (var c in myString)
+            {
+                if (myDict.ContainsKey(c))
+                    myDict[c]++;
+                else
+                    myDict.Add(c, 1);
+            }
+            return myDict;
         }
 
-        public static bool isAnagram(string firstString, string secondString)
+        public static bool canBeAnagrams(Dictionary<char, int> firstDict, Dictionary<char, int> secondDict, Dictionary<char, int> initialDict)
         {
-            //If the length of the strings is different, they are not annagrams
-            if (firstString.Length != secondString.Length)
-                return false;
-
-            //Sort both of the strings
-            var firstToChars = firstString.ToLower().ToArray().OrderBy(p => p);
-            var secondToChars = secondString.ToLower().ToArray().OrderBy(p => p);
-            
-            //Parse the character arrays and check if the elements from the same
-            //index in the lists are the same. If not, the strings are not annagrams
-            for (int i = 0; i < firstToChars.Count(); i++)
+            var helping = 0;
+            foreach (var item in firstDict)
             {
-                if (!firstToChars.ElementAt(i).Equals(secondToChars.ElementAt(i)))
-                    return false;
+                helping += item.Value;
             }
-
+            foreach (var item in secondDict)
+            {
+                helping += item.Value;
+            }
+            foreach (var item in initialDict)
+            {
+                helping -= item.Value;
+            }
+            if (helping != 0)
+                return false;
             return true;
         }
 
-        /*
-        public static string canBeAnagram(string initialString, string stringFromFile)
+        public static bool areAnagrams(Dictionary<char, int> firstDict, Dictionary<char, int> secondDict, Dictionary<char,int> initialDict)
         {
-            var characters = initialString.ToCharArray();
-            var myStringBuilder = new StringBuilder();
-            string copyOfStringFromFile = stringFromFile;
-
-            foreach (var c in characters)
+            foreach (var item in firstDict)
             {
-                if (copyOfStringFromFile.Contains(c))
-                {
-                    myStringBuilder.Append(c);
-                    copyOfStringFromFile=copyOfStringFromFile.Replace(c.ToString(),"");
+                if (initialDict.ContainsKey(item.Key))
+                    initialDict[item.Key]-=item.Value;
+            }
 
-                }    
+            foreach (var item in secondDict)
+            {
+                if (initialDict.ContainsKey(item.Key))
+                    initialDict[item.Key]-=item.Value;
+            }
+            //foreach (var item in initialDict)
+                //Console.WriteLine(item.Key + " " + item.Value);
+            return initialDict.Values.All(i => i == 0);
+
+        }
+
+        /*
+        public static bool areAnagrams(string firstString, string secondString,string initialString)
+        {
+            if (initialString == null) throw new ArgumentNullException("First string is null!");
+            if (secondString == null) throw new ArgumentNullException("Second string is null!");
+            if (initialString == null) throw new ArgumentNullException("The initial string is null!");
+            
+             //*firstString and secondString are words read from the given file.
+             //*If the length of these two words is not equal to the length of the initialString("Documenting")
+             //*in out case, they cannot be annagrams
+             
+            if (firstString.Length + secondString.Length != initialString.Length)
+                return false;
+
+            //The frequence vector will keep in memory the characters of the initialString/firstString/secondString
+            // (and an integer, representing the number of appearances of the character in the string)
+            
+            var frequenceVector = new Dictionary<char, int>();
+
+            //Initialize the frequence vector with the initial string characters
+            foreach (char c in initialString)
+            {
+                try{
+                    frequenceVector[c]++;
+                }catch
+                {
+                    frequenceVector.Add(c, 1);
+                }
+            }
+
+            //Parse the first string and the second string  and decrement the frequence vector according
+            //to their characters
+            foreach (char c in firstString)
+            {
+                try
+                {
+                    frequenceVector[c]--;
+                }
+                catch
+                {
+                    frequenceVector.Add(c, 1);
+                }
+            }
+
+            foreach (char c in secondString)
+            {
+                try
+                {
+                    frequenceVector[c]--;
+                }
+                catch
+                {
+                    frequenceVector.Add(c, 1);
+                }
             }
 
 
-            return null;
+            //If the frequence Vector is empty, then the words are anagrams
+            return frequenceVector.Values.All(i => i == 0);
         }
         */
 
-        public static string canBeAnagram(char[] characters, string givenString)
-        {
-            
-            var myString = givenString.ToLower();
-            //String builder used to manipulate the given string
-            var strBuilder = new StringBuilder();
-            strBuilder.Append(myString);
-            
-
-            //List in wich every character from the given list
-            //(character has to be inside the given string)
-            //is inserted
-            var toReturn=new StringBuilder();
-
-            foreach (char c in characters)
-            {
-                var character = Char.ToLower(c);
-                if (strBuilder.ToString().Contains(character))
-                {
-                    //Add the character in the return list
-                    toReturn.Append(c);
-                    //Delete the character from the "input string"
-
-
-                    var regex = new Regex(Regex.Escape(character.ToString()));
-                    //Replace the first occurence of the character c in the given string
-                    givenString = regex.Replace(givenString, "", 1);
-
-                    strBuilder.Clear();
-                    strBuilder.Append(givenString);
-                }
-            }
-            //If every character from the given string was found, return the 
-            //remaining characters from the input character list
-            if (strBuilder.Length.Equals(givenString.Length))
-                return toReturn.ToString();
-            else
-                return "";
-        }
+        
 
     }
 }

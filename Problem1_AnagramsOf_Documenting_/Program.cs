@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Configuration;
 using System.IO;
 using System.Linq;
 using System.Text;
@@ -12,87 +13,53 @@ namespace Problem1_AnagramsOf_Documenting_
     {
         static void Main(string[] args)
         {
-            //var initialString = "Documenting".ToLower().OrderBy(p => p).ToArray();
-            //Console.WriteLine(initialString);
-            /*
-            string toCheck = "Hello";
-            var a = toCheck.ToCharArray();
-            var res = Class1.canBeAnagram(a, "Hell");
-            Console.WriteLine(res);
+            //Get the string from the application config
+            var initialWord = ConfigurationManager.AppSettings["initialString"];
 
-            string aa = "Ionut";
-            aa=aa.Replace('o'.ToString(),"");
-            Console.WriteLine(aa);
-            */
-            //var x = "asdsa".ToCharArray();
+            initialWord = initialWord.ToLower();
+            var initialWordFrequence=Class1.getFrequenceVector(initialWord);
 
+            //The words from the file are kept in a dictionary, together with their frequence vector
+            var wordsFromFileDict = new Dictionary<string, Dictionary<char, int>>();
 
+            //The result strings are kept in a dictionary
+            var resultDict = new Dictionary<string, string>();           
 
-            var wordsFromFile = new List<string>();
-
-            /*
-            var a = "Hello".ToCharArray();
-            var res = Class1.canBeAnagram(a, "Hell");
-            Console.WriteLine(res);
-            */
             var reader = new StreamReader("wordList.txt");
-            StringBuilder myStringBuilder=new StringBuilder();
             var line = "";
-
             while (line != null)
             {
                 line = reader.ReadLine();
+                
                 if (line == null)
                     break;
-                wordsFromFile.Add(line);
+                line = line.ToLower();
+                if(!wordsFromFileDict.ContainsKey(line))
+                    wordsFromFileDict.Add(line, Class1.getFrequenceVector(line));
             }
-            
 
-            //Console.WriteLine(wordsFromFile.Count);
-            var helpingString = "";
-            foreach (var x in wordsFromFile)
+            foreach (var x in wordsFromFileDict)
             {
-                var initialString = "Documenting".ToLower().ToCharArray();
-                var xy = 0;
-                var firstResult = Class1.canBeAnagram(initialString, x);
-                //Console.WriteLine(x+" "+firstResult+" string: Documenting");
-               
-                if (firstResult != null)
+                
+                //Console.WriteLine(x.ToLower());
+                foreach (var y in wordsFromFileDict)
                 {
-                    foreach (char c in firstResult)
-                    {
-                        var regex = new Regex(Regex.Escape(c.ToString()));
-                        helpingString = regex.Replace(initialString.ToString(), "", 1);
-                        //initialString = regex.Replace(initialString.ToString(), "", 1);
-                        //Console.Write(c.ToString());
-                    }
-                    
-                    foreach (var y in wordsFromFile)
-                    {
-                        var secondResult = Class1.canBeAnagram(helpingString.ToCharArray(), y);
-                        //Console.WriteLine(y + " " + secondResult);
-                        var help = "";
-                        foreach (char c in secondResult)
-                        {
-                            var regex = new Regex(Regex.Escape(c.ToString()));
-                            help = regex.Replace(helpingString.ToString(), "", 1);
-                        }
-                        Console.WriteLine(help.ToString());
+                    initialWordFrequence = Class1.getFrequenceVector(initialWord);
+                    if (Class1.canBeAnagrams(x.Value, y.Value, initialWordFrequence))
 
-                        if (secondResult != null && secondResult.Length == y.Length )
-                        {
-                            Console.WriteLine(firstResult + " -> " + secondResult);
-                            xy++;
-                            break;
-                        }
-                    }
-                    
+                        if (Class1.areAnagrams(x.Value, y.Value, initialWordFrequence))
+                            //Doesn't add duplicates in the result
+                            if(!(resultDict.ContainsKey(x.Key) && resultDict.ContainsValue(y.Key))
+                                && !(resultDict.ContainsKey(y.Key) && resultDict.ContainsValue(x.Key) ))
+                                    resultDict.Add(x.Key, y.Key);                 
                 }
-                if (xy == 100)
-                    break;
-
             }
 
+            //Print the results
+            foreach (var item in resultDict)
+            {
+                Console.WriteLine(String.Format("Anagrams of {0} : {1} - {2}", initialWord, item.Key, item.Value));
+            }
 
             Console.ReadLine();
         }

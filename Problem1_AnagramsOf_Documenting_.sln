@@ -5,9 +5,7 @@ VisualStudioVersion = 12.0.21005.1
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Problem1_AnagramsOf_Documenting_", "Problem1_AnagramsOf_Documenting_\Problem1_AnagramsOf_Documenting_.csproj", "{0B9D49B4-9380-4F2A-8E5A-0A04AFDC6AC9}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TestingIsAnagram", "TestingIsAnagram\TestingIsAnagram.csproj", "{D71DD8B5-46D6-433D-9A78-2E8923A8ED1E}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TestingCanBeAnagram", "TestingCanBeAnagram\TestingCanBeAnagram.csproj", "{92C8E71E-8544-4001-87F9-CB2B8DE78F8B}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TestingAreAnagrams", "TestingAreAnagrams\TestingAreAnagrams.csproj", "{183F8F67-DDF6-464F-B9AC-93191D292732}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -19,14 +17,10 @@ Global
 		{0B9D49B4-9380-4F2A-8E5A-0A04AFDC6AC9}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{0B9D49B4-9380-4F2A-8E5A-0A04AFDC6AC9}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{0B9D49B4-9380-4F2A-8E5A-0A04AFDC6AC9}.Release|Any CPU.Build.0 = Release|Any CPU
-		{D71DD8B5-46D6-433D-9A78-2E8923A8ED1E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{D71DD8B5-46D6-433D-9A78-2E8923A8ED1E}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{D71DD8B5-46D6-433D-9A78-2E8923A8ED1E}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{D71DD8B5-46D6-433D-9A78-2E8923A8ED1E}.Release|Any CPU.Build.0 = Release|Any CPU
-		{92C8E71E-8544-4001-87F9-CB2B8DE78F8B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{92C8E71E-8544-4001-87F9-CB2B8DE78F8B}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{92C8E71E-8544-4001-87F9-CB2B8DE78F8B}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{92C8E71E-8544-4001-87F9-CB2B8DE78F8B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{183F8F67-DDF6-464F-B9AC-93191D292732}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{183F8F67-DDF6-464F-B9AC-93191D292732}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{183F8F67-DDF6-464F-B9AC-93191D292732}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{183F8F67-DDF6-464F-B9AC-93191D292732}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
